@@ -6,6 +6,7 @@ import com.techelevator.ui.UserOutput;
 
 public class VendingMachine {
     public void run() {
+        //RestockingItems();
         Display display = new Display();
         display.getDisplay();
         while(true) {
