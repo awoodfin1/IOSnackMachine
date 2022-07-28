@@ -27,14 +27,16 @@ public class Display {
                 String itemInVendingMachine = scanner.nextLine();
                 String [] arr = itemInVendingMachine.split("\\,");
 
-                for (String s : arr) {
-                    list.add(s + "\n");
+//                for (String s : arr) {
+//                    list.add(s + "\n");
+//                }
+
+                for (int i = 0; i < arr.length; i += 4) {
+                    list.add (arr[i]+", "+arr[i+1]+", "+arr[i+2]+", "+arr[i+3] +"\n");
+
                 }
             }
-            // attempt 1
-            for (int i = 0; i < list ; i++) {
 
-            }
 
 
             System.out.println(list);
