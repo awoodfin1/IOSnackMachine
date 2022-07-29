@@ -31,7 +31,7 @@ public class Display {
                     list.add (arr[i]+", "+arr[i+1]+", "+arr[i+2]+", "+arr[i+3] +"\n");
                 }
             }
-            System.out.println(list);
+            System.out.println(list.toString());
         } catch(FileNotFoundException e){
             System.out.println(e.getMessage());
         }

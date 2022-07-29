@@ -18,7 +18,9 @@ public class VendingMachine {
                        display.getDisplay();
             }
             else if(choice.equals("purchase")) {
-                // make a purchase
+                String answer = UserInput.getMenuOptions();
+                System.out.println(answer);
+
             }
             else if(choice.equals("exit")) {
                 // good bye
