@@ -12,10 +12,8 @@ public class Display {
     private List<String> list = new ArrayList<>();
 //    private List<String> list = new ArrayList();
 
-
     //System.out.println(list + "\n");
     public Display() {
-
 
     }
 

@@ -1,6 +1,8 @@
 package com.techelevator.ui;
 
 import java.util.Scanner;
+import com.techelevator.ui.FeedMoney;
+
 
 /**
  * Responsibilities: This class should handle receiving ALL input from the User
@@ -58,6 +60,8 @@ public class UserInput {
 
         if (option.equals("m")) {
             return "Feed Money";
+
+
         }
         else if (option.equals("s")) {
             return "Select Item";

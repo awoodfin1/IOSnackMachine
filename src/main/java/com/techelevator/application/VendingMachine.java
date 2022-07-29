@@ -1,6 +1,7 @@
 package com.techelevator.application;
 
 import com.techelevator.ui.Display;
+import com.techelevator.ui.FeedMoney;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
@@ -21,6 +22,8 @@ public class VendingMachine {
                 String answer = UserInput.getMenuOptions();
                 System.out.println(answer);
 
+                FeedMoney feedMoney = new FeedMoney();
+                feedMoney.getUserDollarAmount();
             }
             else if(choice.equals("exit")) {
                 // good bye

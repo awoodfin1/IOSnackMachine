@@ -2,17 +2,20 @@ package com.techelevator.purchase;
 
 public class Money {
 
-    private double wholeDollars;
+    private Double wholeDollars;
 
-    public Money(double wholeDollars) {
+    public Money(Double wholeDollars) {
         this.wholeDollars = wholeDollars;
     }
 
-    public double getWholeDollars() {
+    public Double getWholeDollars() {
         return wholeDollars;
     }
 
-    public void setWholeDollars(double wholeDollars) {
+    public void setWholeDollars(Double wholeDollars) {
         this.wholeDollars = wholeDollars;
     }
+
+
+
 }
