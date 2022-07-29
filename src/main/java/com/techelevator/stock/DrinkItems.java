@@ -1,10 +1,9 @@
 package com.techelevator.stock;
 
-public class Drink {
+public class DrinkItems extends Items {
 
-    private int gingerStockAmount;
-    private int papsiStockAmount;
-    private int mountainStockAmount;
-    private int sevenDownStockAmount;
 
+    public DrinkItems(String itemName, String selection, double itemPrice, String itemType) {
+        super(itemName, selection, itemPrice, itemType);
+    }
 }

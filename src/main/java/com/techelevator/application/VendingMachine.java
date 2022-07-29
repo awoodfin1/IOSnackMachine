@@ -6,15 +6,16 @@ import com.techelevator.ui.UserOutput;
 
 public class VendingMachine {
     public void run() {
-        //RestockingItems();
-        Display display = new Display();
-        display.getDisplay();
+        RestockingItems stock = new RestockingItems();
+        System.out.println(stock.getInventory().toString());
+
         while(true) {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
             System.out.println(choice);
             if(choice.equals("display")) {
-                // display the items
+                Display display = new Display();
+                       display.getDisplay();
             }
             else if(choice.equals("purchase")) {
                 // make a purchase

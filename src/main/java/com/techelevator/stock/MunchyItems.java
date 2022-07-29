@@ -1,11 +1,9 @@
 package com.techelevator.stock;
 
-public class MunchyItems {
+public class MunchyItems extends Items {
 
 
-    private int chipposStockAmount;
-    private int stackersStockAmount;
-    private int popcornStockAmount;
-    private int preenglesStockAmount;
-
+    public MunchyItems(String itemName, String selection,  double itemPrice, String itemType) {
+        super(itemName, selection,  itemPrice, itemType);
+    }
 }

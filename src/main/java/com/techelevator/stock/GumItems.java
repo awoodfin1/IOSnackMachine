@@ -1,8 +1,8 @@
 package com.techelevator.stock;
 
-public class Gum {
-    private int uChewsStockAmount;
-    private int teaberryStockAmount;
-    private int singlemintStockAmount;
-    private int chicletsStockAmount;
+public class GumItems extends Items {
+
+    public GumItems(String itemName, String selection,  double itemPrice, String itemType) {
+        super(itemName, selection, itemPrice, itemType);
+    }
 }
