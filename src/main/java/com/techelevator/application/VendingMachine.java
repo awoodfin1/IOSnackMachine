@@ -1,14 +1,12 @@
 package com.techelevator.application;
 
-import com.techelevator.ui.Display;
-import com.techelevator.ui.FeedMoney;
-import com.techelevator.ui.UserInput;
-import com.techelevator.ui.UserOutput;
+import com.techelevator.stock.Items;
+import com.techelevator.ui.*;
 
 public class VendingMachine {
     public void run() {
         RestockingItems stock = new RestockingItems();
-        System.out.println(stock.getInventory().toString());
+        System.out.println(stock.getFileMap().toString());
 
         while(true) {
             UserOutput.displayHomeScreen();
@@ -19,11 +17,17 @@ public class VendingMachine {
                        display.getDisplay();
             }
             else if(choice.equals("purchase")) {
-                String answer = UserInput.getMenuOptions();
-                System.out.println(answer);
-
                 FeedMoney feedMoney = new FeedMoney();
-                feedMoney.userDollarAmount();
+                while (true) {
+                    String answer = UserInput.getMenuOptions(feedMoney);
+                    System.out.println(answer);
+                    if (answer.equals("Feed Money")) {
+                        feedMoney.userDollarAmount();
+                    }
+                }
+
+
+
             }
             else if(choice.equals("exit")) {
                 // good bye

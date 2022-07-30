@@ -1,6 +1,8 @@
 package com.techelevator.ui;
 
 import java.util.Scanner;
+
+import com.techelevator.application.RestockingItems;
 import com.techelevator.ui.FeedMoney;
 
 
@@ -40,16 +42,16 @@ public class UserInput {
         }
     }
 
-    public static String getMenuOptions(){
+    public static String getMenuOptions(FeedMoney feedMoney){
 
-        Scanner scanner = new Scanner(System.in);
+
         System.out.println();
         System.out.println("(M) Feed Money");
         System.out.println("(S) Select item");
         System.out.println("(F) Finish Transaction");
         System.out.println();
         // need to add money provided.
-        System.out.println("Current Money Provided: ");
+        System.out.println("Current Money Provided: " + feedMoney.getBills());
         System.out.println();
         System.out.print("Please select an option: ");
 
@@ -59,11 +61,15 @@ public class UserInput {
         System.out.println("Option = " + option);
 
         if (option.equals("m")) {
+
+
             return "Feed Money";
 
 
         }
         else if (option.equals("s")) {
+            SelectItem selectItem = new SelectItem();
+            selectItem.userSelection();
             return "Select Item";
             // Select Item \n
         }

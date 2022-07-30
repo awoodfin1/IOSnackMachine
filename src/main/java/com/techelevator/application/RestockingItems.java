@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class RestockingItems {
+
     private Map<String, Items> inventory = new HashMap();
 
     public Map<String, Items> getInventory() {
@@ -23,11 +24,16 @@ public class RestockingItems {
     }
 
     public RestockingItems() {
-        File file = new File("catering.csv");
+        this.inventory = inventory;
+    }
+
+    public Map<String, Items> getFileMap() {
+        File file = new File("vending.csv");
         try (Scanner scanner = new Scanner(file)) {
 
             while (scanner.hasNextLine()) {
 
+                //Use for display please
                 String itemInVendingMachine = scanner.nextLine();
                 String[] arr = itemInVendingMachine.split(",");
 
@@ -43,11 +49,14 @@ public class RestockingItems {
                 }
 
                 inventory.put(arr[0],newItem);
+                //Items name = inventory.get("A2"); It don't do nothin
+                System.out.println(newItem.getItemPrice() + " " + newItem.getItemsStock());
+
 
             }
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
         }
-
+        return inventory;
     }
 }

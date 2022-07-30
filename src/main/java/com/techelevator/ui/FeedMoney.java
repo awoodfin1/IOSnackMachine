@@ -38,8 +38,7 @@ public class FeedMoney {
                 startingBalance();
                 System.out.println();
 
-            } else if (isBill = false) {
-                return userDollarAmount();
+
             } else {
                 break;
             }
@@ -65,6 +64,8 @@ public class FeedMoney {
 
             //while {
                startBalance += bills;
+//        }else {
+//            return userDollarAmount();
         }
         System.out.println("This is your current balance " + startBalance);
         return startBalance;
