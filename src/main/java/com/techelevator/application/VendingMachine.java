@@ -23,7 +23,7 @@ public class VendingMachine {
                 System.out.println(answer);
 
                 FeedMoney feedMoney = new FeedMoney();
-                feedMoney.getUserDollarAmount();
+                feedMoney.userDollarAmount();
             }
             else if(choice.equals("exit")) {
                 // good bye
