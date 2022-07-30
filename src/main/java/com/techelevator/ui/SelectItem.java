@@ -13,8 +13,6 @@ public class SelectItem {
 
     Scanner scanner = new Scanner(System.in);
 
-
-
     public void userSelection(RestockingItems restockingItems){
         Display display = new Display();
         display.getDisplay();
@@ -24,13 +22,24 @@ public class SelectItem {
 
 
         //How do we compare our scanner input to our map value.
-        if(restockingItems.getInventory().containsKey(selection)){
+        if(!restockingItems.getInventory().containsKey(selection)){
             //copy the sout in restocking items here!!
-            System.out.println(restockingItems.getNewItem().getItemName() + " | " + restockingItems.getNewItem().getItemPrice() + " | " + restockingItems.getNewItem().getItemsStock());
+            System.out.println("Not a valid slot");
 
-       } else{
+        } else{
+            Items item = restockingItems.getInventory().get(selection);
+            double price = item.getItemPrice();
             System.out.println("this doesnt work");
+            if(item.getItemsStock() == 0){
+                System.out.println("Out of stock");
+            } else if (true){
+
+            }
         }
+
+//            System.out.println(restockingItems.getNewItem().getItemName() + " | " + restockingItems.getNewItem().getItemPrice() + " | " + restockingItems.getNewItem().getItemsStock());
+
+
 //        for (String i : restockingItems.getInventory().keySet()) {
 //
 //

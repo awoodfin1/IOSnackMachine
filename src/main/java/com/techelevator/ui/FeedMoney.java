@@ -2,6 +2,7 @@ package com.techelevator.ui;
 
 import com.techelevator.purchase.Money;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 import static com.techelevator.ui.UserInput.getMenuOptions;
@@ -24,33 +25,12 @@ public class FeedMoney {
         this.startBalance = startBalance;
     }
 
-    public FeedMoney (){
+    public FeedMoney() {
 
     }
-    public double userDollarAmount() {
-        Scanner scanner = new Scanner(System.in);
-// try catch if they enter a letter to our number code like meanies.
-        while (isBill) {
-            System.out.println("Please insert a dollar bill (only accepts $1, $5, $10, $20 bills) or press R to return to menu ");
-//
-            setBills(Double.parseDouble(scanner.nextLine()));
 
 
-//        }
-            if (acceptedDollars()) {
-                System.out.println("this is a bill " + bills);
-                startingBalance();
-                System.out.println();
 
-
-            } else {
-                break;
-            }
-
-        }
-    // }
-        return bills;
-    }
     public boolean acceptedDollars() {
         double currentValueOfBills = getBills();
         if ((bills == 1.00) || (bills == 5.00) || (bills == 10.00) || (bills == 20.00)) {
@@ -65,7 +45,7 @@ public class FeedMoney {
     public Double startingBalance() {
         boolean isTrue = acceptedDollars();
         if (isTrue) {
-               startBalance += bills;
+            startBalance += bills;
         }
         System.out.println("This is your current balance " + startBalance);
         return startBalance;
@@ -80,6 +60,8 @@ public class FeedMoney {
         this.bills = bills;
     }
 
+}
+
 //    public Double getUserDollarAmount () {
 //
 ////        while(isBill){
@@ -91,11 +73,10 @@ public class FeedMoney {
 ////            }
 //
 //        }
-        // use the other 2 methods to make sure the dolalr is 1,5,10,20 and then
-        // add dollar to the user amount.
+    // use the other 2 methods to make sure the dolalr is 1,5,10,20 and then
+    // add dollar to the user amount.
 
 //        while ()
 
-       // return null;
+    // return null;
     //}
-    }

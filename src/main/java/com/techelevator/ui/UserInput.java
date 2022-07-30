@@ -1,5 +1,6 @@
 package com.techelevator.ui;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 import com.techelevator.application.RestockingItems;
@@ -42,18 +43,15 @@ public class UserInput {
         }
     }
 
-    public static String getMenuOptions(FeedMoney feedMoney){
-
-
+    public static String getMenuOptions(BigDecimal balance){
         System.out.println();
         System.out.println("(M) Feed Money");
         System.out.println("(S) Select item");
         System.out.println("(F) Finish Transaction");
         System.out.println();
-        System.out.println("Current Money Provided: $" + feedMoney.getStartBalance());
+        System.out.println("Current Money Provided: $" + balance);
         System.out.println();
         System.out.print("Please select an option: ");
-
 
         String selectedOption = scanner.nextLine();
         String option = selectedOption.trim().toLowerCase();
@@ -61,9 +59,7 @@ public class UserInput {
 
         if (option.equals("m")) {
 
-
             return "Feed Money";
-
 
         }
         else if (option.equals("s")) {
