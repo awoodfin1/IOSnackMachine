@@ -18,11 +18,14 @@ public class VendingMachine {
             }
             else if(choice.equals("purchase")) {
                 FeedMoney feedMoney = new FeedMoney();
+                SelectItem selectItem = new SelectItem();
                 while (true) {
                     String answer = UserInput.getMenuOptions(feedMoney);
                     System.out.println(answer);
                     if (answer.equals("Feed Money")) {
                         feedMoney.userDollarAmount();
+                    } else if(answer.equals("Select Item")){
+                        selectItem.userSelection(stock);
                     }
                 }
 

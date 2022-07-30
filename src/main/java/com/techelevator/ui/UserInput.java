@@ -50,8 +50,7 @@ public class UserInput {
         System.out.println("(S) Select item");
         System.out.println("(F) Finish Transaction");
         System.out.println();
-        // need to add money provided.
-        System.out.println("Current Money Provided: " + feedMoney.getBills());
+        System.out.println("Current Money Provided: $" + feedMoney.getStartBalance());
         System.out.println();
         System.out.print("Please select an option: ");
 
@@ -68,8 +67,6 @@ public class UserInput {
 
         }
         else if (option.equals("s")) {
-            SelectItem selectItem = new SelectItem();
-            selectItem.userSelection();
             return "Select Item";
             // Select Item \n
         }

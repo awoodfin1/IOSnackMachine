@@ -16,22 +16,26 @@ public class FeedMoney {
     private boolean isBill = true;
     private Double startBalance = 0.00;
 
+    public Double getStartBalance() {
+        return startBalance;
+    }
 
+    public void setStartBalance(Double startBalance) {
+        this.startBalance = startBalance;
+    }
 
     public FeedMoney (){
 
     }
     public double userDollarAmount() {
         Scanner scanner = new Scanner(System.in);
-
+// try catch if they enter a letter to our number code like meanies.
         while (isBill) {
             System.out.println("Please insert a dollar bill (only accepts $1, $5, $10, $20 bills) or press R to return to menu ");
-//            if(scanner.nextLine().equalsIgnoreCase("r")){
-//                getMenuOptions();
-//            }else {
-            setBills(Double.parseDouble(scanner.nextLine()));
-//            continue;
 //
+            setBills(Double.parseDouble(scanner.nextLine()));
+
+
 //        }
             if (acceptedDollars()) {
                 System.out.println("this is a bill " + bills);
@@ -57,19 +61,16 @@ public class FeedMoney {
             return false;
         }
     }
+
     public Double startingBalance() {
         boolean isTrue = acceptedDollars();
-
         if (isTrue) {
-
-            //while {
                startBalance += bills;
-//        }else {
-//            return userDollarAmount();
         }
         System.out.println("This is your current balance " + startBalance);
         return startBalance;
     }
+
 
     public Double getBills() {
         return bills;

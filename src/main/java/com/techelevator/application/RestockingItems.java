@@ -4,11 +4,17 @@ import com.techelevator.stock.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class RestockingItems {
+    private Items newItem;
+
+    public Items getNewItem() {
+        return newItem;
+    }
 
     private Map<String, Items> inventory = new HashMap();
 
@@ -37,7 +43,7 @@ public class RestockingItems {
                 String itemInVendingMachine = scanner.nextLine();
                 String[] arr = itemInVendingMachine.split(",");
 
-                Items newItem;
+                //Items newItem;
                 if(arr[3].equalsIgnoreCase("Gum")){
                     newItem = new GumItems(arr[1],arr[0], Double.parseDouble(arr[2]), arr[3]);
                 }else if(arr[3].equalsIgnoreCase("Drink")){
@@ -49,8 +55,8 @@ public class RestockingItems {
                 }
 
                 inventory.put(arr[0],newItem);
-                //Items name = inventory.get("A2"); It don't do nothin
-                System.out.println(newItem.getItemPrice() + " " + newItem.getItemsStock());
+
+                //System.out.println(newItem.getItemPrice() + " " + newItem.getItemsStock());
 
 
             }
