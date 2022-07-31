@@ -6,7 +6,9 @@ import com.techelevator.ui.*;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 
 // lower case r does not work when in feed money. update = fixed.
@@ -22,21 +24,30 @@ public class VendingMachine {
     private BigDecimal machineBalance = new BigDecimal("0.00");
 
     public BigDecimal getMachineBalance() {
-        return machineBalance;
+        return this.machineBalance;
     }
 
     public void balanceAdd(BigDecimal addition) {
-        machineBalance = machineBalance.add(addition);
+        this.machineBalance = machineBalance.add(addition);
     }
 
     public void balanceSub(BigDecimal subtraction) {
-        machineBalance = machineBalance.subtract(subtraction);
+        this.machineBalance = machineBalance.subtract(subtraction);
     }
 
+    private String abc;
+
+    // treemap created .. trying to figure it out.
+    TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>();
+    int counter = 0;
+
+
+
     public void run() {
+        Audit auditRun = new Audit();
+        Audit.audit(abc);
+
         RestockingItems stock = new RestockingItems();
-        // dont think we need line 33. BUT line 34 is needed. Program will break if removed.
-//        System.out.println(stock.getFileMap().toString());
         stock.getFileMap().toString();
 
         while(true) {
@@ -66,6 +77,9 @@ public class VendingMachine {
             }
             else if(choice.equals("exit")) {
                 System.out.println("Have a good one!");
+                // these two are being used in threeMap
+                Audit.auditWriter(treeMap);
+                System.out.println(treeMap);
                 break;
             }
         }
@@ -87,7 +101,9 @@ public class VendingMachine {
             BigDecimal bill = new BigDecimal(userInput);
             machineBalance = machineBalance.add(bill);
             Audit.auditDate();
-            //Audit.moneyTransactions();
+            // Treemap
+            treeMap.put(machineBalance.toString(), counter++ );
+//            Audit.feedMoneyAudit(machineBalance);
         }
     }
     public void userSelection(RestockingItems restockingItems) {
@@ -97,7 +113,6 @@ public class VendingMachine {
         System.out.println();
         System.out.println("Watchu want? ");
 
-        // made change so changes lower case to uppercase.
         String selection = scanner.nextLine().toUpperCase();
 
         if (!restockingItems.getInventory().containsKey(selection)) {
@@ -120,9 +135,13 @@ public class VendingMachine {
                 System.out.println("_____________________________________");
                 System.out.println(item.getItemName() + " $" + item.getItemPrice() );
                 System.out.println();
-                // get sound/slogan of whatever user buys.
                 System.out.println(item.getMessage());
                 System.out.println("_____________________________________");
+
+                // Treemap
+                treeMap.put(item.getItemName(), counter++);
+                treeMap.put(item.getSelection(), counter++);
+
             }
         }
     }
@@ -130,7 +149,7 @@ public class VendingMachine {
     public void finishTransaction() {
 
         System.out.println("The total amount returned is: $" + machineBalance);
-        Audit.auditDate();
+        Audit.purchaseChange(machineBalance);
 
         int dollar = 0;
         int quarters = 0;
@@ -167,6 +186,4 @@ public class VendingMachine {
             System.out.print(nickels + " nickle(s) ");
         }
     }
-
-
 }
