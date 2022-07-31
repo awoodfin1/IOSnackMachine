@@ -20,44 +20,18 @@ public class SelectItem {
         System.out.println("Watchu want? ");
         String selection = scanner.nextLine();
 
-
-        //How do we compare our scanner input to our map value.
         if(!restockingItems.getInventory().containsKey(selection)){
-            //copy the sout in restocking items here!!
             System.out.println("Not a valid slot");
 
         } else{
             Items item = restockingItems.getInventory().get(selection);
             double price = item.getItemPrice();
+            // do we need line 32?
             System.out.println("this doesnt work");
             if(item.getItemsStock() == 0){
                 System.out.println("Out of stock");
             } else if (true){
-
             }
         }
-
-//            System.out.println(restockingItems.getNewItem().getItemName() + " | " + restockingItems.getNewItem().getItemPrice() + " | " + restockingItems.getNewItem().getItemsStock());
-
-
-//        for (String i : restockingItems.getInventory().keySet()) {
-//
-//
-//            //How do we compare our scanner input to our map value.
-//            // if (restockingItems.getInventory().containsKey(selection)) {
-//            if(i.equals(selection)){
-//
-//                //copy the sout in restocking items here!!
-//                System.out.println(restockingItems.getNewItem().getItemName() + " | " + restockingItems.getNewItem().getItemPrice() + " | " + restockingItems.getNewItem().getItemsStock());
-//                System.out.println(i);
-//            } else {
-//                System.out.println("this doesnt work");
-//            }
-//        }
-
-
-        //System.out.println(display.getDisplay([3]));
     }
-
-
 }

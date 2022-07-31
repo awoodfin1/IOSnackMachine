@@ -1,11 +1,19 @@
 package com.techelevator.application;
 
 import com.techelevator.stock.Items;
-import com.techelevator.stock.Message;
 import com.techelevator.ui.*;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
+
+
+// lower case r does not work when in feed money. update = fixed.
+// need to clean up and delete uneccessary folders.
+// make it pretty.
+// unit testing and audit.
+// testing for bugs. = break it.
+
+
 
 public class VendingMachine {
 
@@ -21,7 +29,9 @@ public class VendingMachine {
 
     public void run() {
         RestockingItems stock = new RestockingItems();
-        System.out.println(stock.getFileMap().toString());
+        // dont think we need line 33. BUT line 34 is needed. Program will break if removed.
+//        System.out.println(stock.getFileMap().toString());
+        stock.getFileMap().toString();
 
         while(true) {
             UserOutput.displayHomeScreen();
@@ -41,11 +51,15 @@ public class VendingMachine {
                         userDollarAmount();
                     } else if(answer.equals("Select Item")){
                         userSelection(stock);
+                    }else if (answer.equals("Finish Transaction")){
+                        finishTransaction();
+                        run();
+                        return;
                     }
                 }
             }
             else if(choice.equals("exit")) {
-                // good bye
+                System.out.println("Have a good one!");
                 break;
             }
         }
@@ -55,7 +69,7 @@ public class VendingMachine {
 
         System.out.println("Please insert a dollar bill (only accepts $1, $5, $10, $20 bills) or press R to return to menu ");
 
-        String userInput = scanner.nextLine();
+        String userInput = scanner.nextLine().toUpperCase();
         if(!userInput.equals("1") && !userInput.equals("5") && !userInput.equals("10") && !userInput.equals("20") && !userInput.equals("R")) {
             System.err.println("Invalid input");
             return;
@@ -77,7 +91,7 @@ public class VendingMachine {
         String selection = scanner.nextLine().toUpperCase();
 
         if (!restockingItems.getInventory().containsKey(selection)) {
-            System.out.println("Not a valid slot");
+            System.err.println("Not a valid slot");
 
         } else {
             Items item = restockingItems.getInventory().get(selection);
@@ -85,18 +99,61 @@ public class VendingMachine {
             String priceString = Double.toString(price);
             BigDecimal bigPrice = new BigDecimal(priceString);
             if (item.getItemsStock() == 0) {
-                System.out.println("Out of stock");
+                System.err.println("Out of stock");
             } else if (bigPrice.compareTo(machineBalance) == 1) {
                 System.out.println("Not enough money");
             } else {
                 machineBalance = machineBalance.subtract(bigPrice);
                 item.setItemsStock(item.getItemsStock() - 1);
-                System.out.println(item.getItemName() + " " + item.getItemPrice() + " " );
+                System.out.println();
+                System.out.println("_____________________________________");
+                System.out.println(item.getItemName() + " $" + item.getItemPrice() );
                 System.out.println();
                 // get sound/slogan of whatever user buys.
                 System.out.println(item.getMessage());
+                System.out.println("_____________________________________");
             }
         }
     }
-}
 
+    public void finishTransaction() {
+
+        System.out.println("The total amount returned is: $" + machineBalance);
+
+        int dollar = 0;
+        int quarters = 0;
+        int dimes = 0;
+        int nickels = 0;
+
+        while (machineBalance.compareTo(BigDecimal.valueOf(0.0)) >= 0) {
+            if (machineBalance.compareTo(BigDecimal.valueOf(1.0)) >= 0) {
+                machineBalance = machineBalance.subtract(BigDecimal.valueOf(1.0));
+                dollar++;
+            } else if (machineBalance.compareTo(BigDecimal.valueOf(0.25)) >= 0) {
+                machineBalance = machineBalance.subtract(BigDecimal.valueOf(0.25));
+                quarters++;
+            } else if (machineBalance.compareTo(BigDecimal.valueOf(0.10)) >= 0) {
+                machineBalance = machineBalance.subtract(BigDecimal.valueOf(0.10));
+                dimes++;
+            } else if (machineBalance.compareTo(BigDecimal.valueOf(0.05)) >= 0) {
+                machineBalance = machineBalance.subtract(BigDecimal.valueOf(0.05));
+                nickels++;
+            } else {
+                break;
+            }
+        }
+        if (dollar > 0) {
+            System.out.print(dollar + " dollar(s) ");
+        }
+        if (quarters > 0) {
+            System.out.print(quarters + " quarter(s) ");
+        }
+        if (dimes > 0) {
+            System.out.print(dimes + " dimes(s) ");
+        }
+        if (nickels > 0) {
+            System.out.print(nickels + " nickle(s) ");
+        }
+    }
+
+}
