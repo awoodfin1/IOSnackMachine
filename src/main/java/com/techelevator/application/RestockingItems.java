@@ -53,11 +53,7 @@ public class RestockingItems {
                 }else {
                     newItem = new MunchyItems(arr[1], arr[0], Double.parseDouble(arr[2]), arr[3]);
                 }
-
                 inventory.put(arr[0],newItem);
-
-                //System.out.println(newItem.getItemPrice() + " " + newItem.getItemsStock());
-
 
             }
         } catch (FileNotFoundException e) {

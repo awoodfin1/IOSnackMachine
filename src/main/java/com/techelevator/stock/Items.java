@@ -4,7 +4,7 @@ import com.techelevator.ui.Display;
 
 import java.math.BigDecimal;
 
-public class Items<list> {
+public class Items<list> implements Message{
 
     private String itemName;
     private String selection;
@@ -58,5 +58,10 @@ public class Items<list> {
 
     public void setItemType(String itemType) {
         this.itemType = itemType;
+    }
+
+    @Override
+    public String getMessage() {
+        return getMessage();
     }
 }

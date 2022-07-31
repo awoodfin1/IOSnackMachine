@@ -1,6 +1,7 @@
 package com.techelevator.application;
 
 import com.techelevator.stock.Items;
+import com.techelevator.stock.Message;
 import com.techelevator.ui.*;
 
 import java.math.BigDecimal;
@@ -28,7 +29,7 @@ public class VendingMachine {
             System.out.println(choice);
             if(choice.equals("display")) {
                 Display display = new Display();
-                       display.getDisplay();
+                display.getDisplay();
             }
             else if(choice.equals("purchase")) {
                 FeedMoney feedMoney = new FeedMoney();
@@ -42,9 +43,6 @@ public class VendingMachine {
                         userSelection(stock);
                     }
                 }
-
-
-
             }
             else if(choice.equals("exit")) {
                 // good bye
@@ -52,13 +50,11 @@ public class VendingMachine {
             }
         }
     }
-
     public void userDollarAmount() {
         Scanner scanner = new Scanner(System.in);
-// try catch if they enter a letter to our number code like meanies.
 
         System.out.println("Please insert a dollar bill (only accepts $1, $5, $10, $20 bills) or press R to return to menu ");
-//
+
         String userInput = scanner.nextLine();
         if(!userInput.equals("1") && !userInput.equals("5") && !userInput.equals("10") && !userInput.equals("20") && !userInput.equals("R")) {
             System.err.println("Invalid input");
@@ -70,19 +66,17 @@ public class VendingMachine {
             machineBalance = machineBalance.add(bill);
         }
     }
-
     public void userSelection(RestockingItems restockingItems) {
         Scanner scanner = new Scanner(System.in);
         Display display = new Display();
         display.getDisplay();
         System.out.println();
         System.out.println("Watchu want? ");
-        String selection = scanner.nextLine();
 
+        // made change so changes lower case to uppercase.
+        String selection = scanner.nextLine().toUpperCase();
 
-        //How do we compare our scanner input to our map value.
         if (!restockingItems.getInventory().containsKey(selection)) {
-            //copy the sout in restocking items here!!
             System.out.println("Not a valid slot");
 
         } else {
@@ -98,7 +92,11 @@ public class VendingMachine {
                 machineBalance = machineBalance.subtract(bigPrice);
                 item.setItemsStock(item.getItemsStock() - 1);
                 System.out.println(item.getItemName() + " " + item.getItemPrice() + " " );
+                System.out.println();
+                // get sound/slogan of whatever user buys.
+                System.out.println(item.getMessage());
             }
         }
     }
 }
+

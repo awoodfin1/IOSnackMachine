@@ -29,7 +29,7 @@ public class Display {
                 for (int i = 0; i < arr.length; i += 4) {
                     list.add (arr[i]+", "+arr[i+1]+", "+arr[i+2]+", "+arr[i+3] +"\n");
                 }
-                System.out.println(arr[0] + " | " + arr[1] + " | " + arr[2]);
+                System.out.println(arr[0] + " | " + arr[1] + " | $" + arr[2]);
             }
 
 
@@ -37,7 +37,6 @@ public class Display {
             System.out.println(e.getMessage());
         }
     }
-
     public String[] getArr() {
         return arr;
     }
