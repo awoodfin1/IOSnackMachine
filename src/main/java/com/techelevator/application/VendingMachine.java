@@ -4,6 +4,8 @@ import com.techelevator.stock.Items;
 import com.techelevator.ui.*;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -18,6 +20,10 @@ import java.util.Scanner;
 public class VendingMachine {
 
     private BigDecimal machineBalance = new BigDecimal("0.00");
+
+    public BigDecimal getMachineBalance() {
+        return machineBalance;
+    }
 
     public void balanceAdd(BigDecimal addition) {
         machineBalance = machineBalance.add(addition);
@@ -66,6 +72,8 @@ public class VendingMachine {
     }
     public void userDollarAmount() {
         Scanner scanner = new Scanner(System.in);
+        Audit audit = new Audit();
+
 
         System.out.println("Please insert a dollar bill (only accepts $1, $5, $10, $20 bills) or press R to return to menu ");
 
@@ -78,6 +86,8 @@ public class VendingMachine {
         } else {
             BigDecimal bill = new BigDecimal(userInput);
             machineBalance = machineBalance.add(bill);
+            Audit.auditDate();
+            //Audit.moneyTransactions();
         }
     }
     public void userSelection(RestockingItems restockingItems) {
@@ -104,6 +114,7 @@ public class VendingMachine {
                 System.out.println("Not enough money");
             } else {
                 machineBalance = machineBalance.subtract(bigPrice);
+                Audit.auditDate();
                 item.setItemsStock(item.getItemsStock() - 1);
                 System.out.println();
                 System.out.println("_____________________________________");
@@ -119,6 +130,7 @@ public class VendingMachine {
     public void finishTransaction() {
 
         System.out.println("The total amount returned is: $" + machineBalance);
+        Audit.auditDate();
 
         int dollar = 0;
         int quarters = 0;
@@ -155,5 +167,6 @@ public class VendingMachine {
             System.out.print(nickels + " nickle(s) ");
         }
     }
+
 
 }
