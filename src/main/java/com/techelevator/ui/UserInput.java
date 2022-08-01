@@ -58,13 +58,10 @@ public class UserInput {
         System.out.println("Option = " + option);
 
         if (option.equals("m")) {
-
             return "Feed Money";
-
         }
         else if (option.equals("s")) {
             return "Select Item";
-            // Select Item \n
         }
         else if (option.equals("f")) {
             return "Finish Transaction";

@@ -1,5 +1,7 @@
 package com.techelevator.purchase;
 
+import java.math.BigDecimal;
+
 public class Money {
 
     private Double wholeDollars;
@@ -15,6 +17,8 @@ public class Money {
     public void setWholeDollars(Double wholeDollars) {
         this.wholeDollars = wholeDollars;
     }
+
+
 
 
 

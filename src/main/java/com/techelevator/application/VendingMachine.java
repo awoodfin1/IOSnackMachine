@@ -4,19 +4,7 @@ import com.techelevator.stock.Items;
 import com.techelevator.ui.*;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.TreeMap;
-
-
-// lower case r does not work when in feed money. update = fixed.
-// need to clean up and delete uneccessary folders.
-// make it pretty.
-// unit testing and audit.
-// testing for bugs. = break it.
-
 
 
 public class VendingMachine {
@@ -35,18 +23,13 @@ public class VendingMachine {
         this.machineBalance = machineBalance.subtract(subtraction);
     }
 
-    private String abc;
-
-    // treemap created .. trying to figure it out.
-    TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>();
-    int counter = 0;
 
 
+    private String test;
 
     public void run() {
         Audit auditRun = new Audit();
-        Audit.audit(abc);
-
+        Audit.audit(test);
         RestockingItems stock = new RestockingItems();
         stock.getFileMap().toString();
 
@@ -77,9 +60,6 @@ public class VendingMachine {
             }
             else if(choice.equals("exit")) {
                 System.out.println("Have a good one!");
-                // these two are being used in threeMap
-                Audit.auditWriter(treeMap);
-                System.out.println(treeMap);
                 break;
             }
         }
@@ -87,10 +67,7 @@ public class VendingMachine {
     public void userDollarAmount() {
         Scanner scanner = new Scanner(System.in);
         Audit audit = new Audit();
-
-
         System.out.println("Please insert a dollar bill (only accepts $1, $5, $10, $20 bills) or press R to return to menu ");
-
         String userInput = scanner.nextLine().toUpperCase();
         if(!userInput.equals("1") && !userInput.equals("5") && !userInput.equals("10") && !userInput.equals("20") && !userInput.equals("R")) {
             System.err.println("Invalid input");
@@ -100,10 +77,7 @@ public class VendingMachine {
         } else {
             BigDecimal bill = new BigDecimal(userInput);
             machineBalance = machineBalance.add(bill);
-            Audit.auditDate();
-            // Treemap
-            treeMap.put(machineBalance.toString(), counter++ );
-//            Audit.feedMoneyAudit(machineBalance);
+            Audit.auditWriter("MONEY FEED:", bill, machineBalance);
         }
     }
     public void userSelection(RestockingItems restockingItems) {
@@ -112,7 +86,6 @@ public class VendingMachine {
         display.getDisplay();
         System.out.println();
         System.out.println("Watchu want? ");
-
         String selection = scanner.nextLine().toUpperCase();
 
         if (!restockingItems.getInventory().containsKey(selection)) {
@@ -137,19 +110,15 @@ public class VendingMachine {
                 System.out.println();
                 System.out.println(item.getMessage());
                 System.out.println("_____________________________________");
-
-                // Treemap
-                treeMap.put(item.getItemName(), counter++);
-                treeMap.put(item.getSelection(), counter++);
-
+                Audit.auditWriter(item.getItemName(), machineBalance , machineBalance);
             }
         }
     }
 
     public void finishTransaction() {
-
+        System.out.println();
         System.out.println("The total amount returned is: $" + machineBalance);
-        Audit.purchaseChange(machineBalance);
+        Audit.auditWriter("CHANGE GIVEN:", machineBalance, new BigDecimal("0.00"));
 
         int dollar = 0;
         int quarters = 0;
